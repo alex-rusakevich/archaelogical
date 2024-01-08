@@ -19,6 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
@@ -32,3 +34,4 @@ jobs:
         with:
           commit_message: update manifest.json
           file_pattern: manifest.json last_modified.txt
+          push_options: --force
