@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import datetime
 import json
 import os
+import time
 from glob import glob
 
 IGNORED_PATHS = (".github",)
@@ -12,7 +12,7 @@ def main():
     manifest = {
         "repo": {
             "maintainers": old_manifest["repo"]["maintainers"],
-            "updated_at": str(datetime.datetime.now()),
+            "address": "https://github.com/alex-rusakevich/archaelogical",
         },
         "packages": {},
     }
@@ -27,11 +27,18 @@ def main():
             ver_path = os.path.join(module, ver_folder)
 
             for art_file in (p for p in glob("*.art", root_dir=ver_path)):
+                art_file = art_file.replace(".art", "").replace(
+                    f"{module}-{ver_folder}-", ""
+                )
+
                 manifest["packages"][module][ver_folder].append(art_file)
 
     json.dump(
         manifest, open("manifest.json", "w", encoding="utf-8"), separators=(",", ":")
     )
+
+    with open("LAST_MODIFIED.txt", "w", encoding="utf-8") as f:
+        f.write(str(time.time()))
 
 
 if __name__ == "__main__":
