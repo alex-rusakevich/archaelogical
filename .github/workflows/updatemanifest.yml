@@ -3,12 +3,12 @@ name: Update manifest.json depending on the file structure
 on:
   pull_request:
     branches:
-      - master
+      - main
     types:
       - closed
   push:
     branches:
-      - master
+      - main
 
 jobs:
   updatemanifest:
