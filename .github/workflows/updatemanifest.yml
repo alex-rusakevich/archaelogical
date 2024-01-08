@@ -1,4 +1,4 @@
-name: Update manifest.json depending on the file structure
+name: Update manifest.json
 
 on:
   pull_request:
