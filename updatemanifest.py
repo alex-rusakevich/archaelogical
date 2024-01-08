@@ -37,7 +37,7 @@ def main():
         manifest, open("manifest.json", "w", encoding="utf-8"), separators=(",", ":")
     )
 
-    with open("LAST_MODIFIED.txt", "w", encoding="utf-8") as f:
+    with open("last_modified.txt", "w", encoding="utf-8") as f:
         f.write(str(time.time()))
 
 
